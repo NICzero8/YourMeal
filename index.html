@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles/main.css">
+</head>
+<body>
+    <header>
+        <div class="background-circle"></div>
+
+        <div class="container">
+            <div class="header_wrapper">
+
+                <div class="header-logo_wrapper">
+                    <img src="./img/ui/logo-header.svg" alt="YourMeal Logo">
+                </div>
+
+                <div class="header-content_wrapper">
+
+                    <div class="header-img_wrapper">
+                        <img src="./img/ui/header-img.png" alt="Бургер">
+                    </div>
+
+                    <div class="header-message_wrapper">
+                        <h1 class="header_title">Только самые<br><span>сочные бургеры!</span></h1>
+                        <p>Бесплатная доставка от <span>599₽</span></p>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    
+
+    <section class="products">
+        <div class="product-category_selection">
+            <ul class="category_list">
+    
+                <li><button class="category_button category_selected" disabled>
+                    <img src="img/ui/icons/burger.svg" alt="Бургеры"> Бургеры
+                </button></li>
+    
+                <li><button class="category_button">
+                    <img src="img/ui/icons/snacks.svg" alt="Закуски"> Закуски
+                </button></li>
+
+                <li><button class="category_button">
+                    <img src="img/ui/icons/hotdog.svg" alt="Хот-доги"> Хот-доги
+                </button></li>
+
+                <li><button class="category_button">
+                    <img src="img/ui/icons/combo.svg" alt="Комбо"> Комбо
+                </button></li>
+
+                <li><button class="category_button">
+                    <img src="img/ui/icons/shawarma.svg" alt="Шаурма"> Шаурма
+                </button></li>
+
+                <li><button class="category_button">
+                    <img src="img/ui/icons/pizza.svg" alt="Пицца"> Пицца
+                </button></li>
+
+                <li><button class="category_button">
+                    <img src="img/ui/icons/wok.svg" alt="Вок"> Вок
+                </button></li>
+
+                <li><button class="category_button">
+                    <img src="img/ui/icons/dessert.svg" alt="Десерты"> Десерты
+                </button></li>
+
+                <li><button class="category_button">
+                    <img src="img/ui/icons/sauce.svg" alt="Соусы"> Соусы
+                </button></li>
+
+            </ul>
+        </div>
+
+        <div class="container">
+
+            
+
+            <div class="products_wrapper">
+
+                <h2 class="category_name">Бургеры</h2>
+
+                <div class="cart_wrapper">
+
+                    <button class="cart_mobile-button">
+                        <h3>Корзина</h3>
+                        <p class="cart_counter">4</p>
+                    </button>
+
+                    <div class="cart">
+
+                        <div class="cart_title">
+                            <h3>Корзина</h3>
+                            <p class="cart_counter">4</p>
+                        </div>
+
+                        <div class="cart_items">
+
+                            <div class="cart_item">
+
+                                <div class="cart_item_img"><img src="./img/products/burgers/super-cheese.png" alt="Супер сырный"></div>
+
+                                <div class="cart_item_info">
+                                    <p class="cart_product-name">Супер сырный</p>
+                                    <span class="cart_product-weight">512</span>
+                                    <p class="cart_product-price">520</p>
+                                </div>
+
+                                <div class="quantity_buttons">
+                                    <button class="minus-button">-</button>
+                                    <p class="quantity-counter">1</p>
+                                    <button class="plus-button">+</button>
+                                </div>
+
+                            </div>
+
+                            <div class="cart_item">
+
+                                <div class="cart_item_img"><img src="./img/products/burgers/super-cheese.png" alt="Супер сырный"></div>
+
+                                <div class="cart_item_info">
+                                    <p class="cart_product-name">Супер сырный</p>
+                                    <span class="cart_product-weight">512</span>
+                                    <p class="cart_product-price">520</p>
+                                </div>
+
+                                <div class="quantity_buttons">
+                                    <button class="minus-button">-</button>
+                                    <p class="quantity-counter">1</p>
+                                    <button class="plus-button">+</button>
+                                </div>
+
+                            </div>
+
+                            <div class="cart_item">
+
+                                <div class="cart_item_img"><img src="./img/products/burgers/super-cheese.png" alt="Супер сырный"></div>
+
+                                <div class="cart_item_info">
+                                    <p class="cart_product-name">Супер сырный</p>
+                                    <span class="cart_product-weight">512</span>
+                                    <p class="cart_product-price">520</p>
+                                </div>
+
+                                <div class="quantity_buttons">
+                                    <button class="minus-button">-</button>
+                                    <p class="quantity-counter">1</p>
+                                    <button class="plus-button">+</button>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="cart_total">
+                            <p class="cart_empty-message none">Тут пока пусто :(</p>
+                            <div class="cart_total_wrapper">
+                                <p>Итого</p>
+                                <p class="cart_total-price">1200</p>
+                            </div>
+                        </div>
+
+                        <button class="button order-button">Оформить заказ</button>
+
+                        <div class="cart_delivery-message_wrapper">
+                            <div class="cart_delivery-message">
+                                <img src="./img/ui/icons/delivery.svg" alt="Доставка">
+                                <p class="cart_free-delivery">Бесплатная доставка</p>
+                                <p class="cart_paid-delivery none">Стоимость доставки: <span class="cart_delivery-price">400</span></p>
+                            </div>
+                            <button class="cart_mobile-button_close">Свернуть</button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="cards_wrapper">
+
+                    <div class="product_card">
+                        <div class="card_product-image">
+                            <img src="./img/products/burgers/meat-bomb.png" alt="Мясная бомба">
+                        </div>
+                        <p class="product_price card_product-price">689</p>
+                        <p class="card_product-name">Мясная бомба</p>
+                        <div class="spacer"></div>
+                        <span class="card_product-weight">520</span>
+                        <button class="button add-button">Добавить</button>
+                    </div>
+
+                    <div class="product_card">
+                        <div class="card_product-image">
+                            <img src="./img/products/burgers/meat-bomb.png" alt="Мясная бомба">
+                        </div>
+                        <p class="product_price card_product-price">689</p>
+                        <p class="card_product-name">Мясная бомба</p>
+                        <div class="spacer"></div>
+                        <span class="card_product-weight">520</span>
+                        <button class="button add-button">Добавить</button>
+                    </div>
+
+                    <div class="product_card">
+                        <div class="card_product-image">
+                            <img src="./img/products/burgers/meat-bomb.png" alt="Мясная бомба">
+                        </div>
+                        <p class="product_price card_product-price">689</p>
+                        <p class="card_product-name">Мясная бомба</p>
+                        <div class="spacer"></div>
+                        <span class="card_product-weight">520</span>
+                        <button class="button add-button">Добавить</button>
+                    </div>
+
+                    <div class="product_card">
+                        <div class="card_product-image">
+                            <img src="./img/products/burgers/meat-bomb.png" alt="Мясная бомба">
+                        </div>
+                        <p class="product_price card_product-price">689</p>
+                        <p class="card_product-name">Мясная бомба</p>
+                        <div class="spacer"></div>
+                        <span class="card_product-weight">520</span>
+                        <button class="button add-button">Добавить</button>
+                    </div>
+
+                    <div class="product_card">
+                        <div class="card_product-image">
+                            <img src="./img/products/burgers/meat-bomb.png" alt="Мясная бомба">
+                        </div>
+                        <p class="product_price card_product-price">689</p>
+                        <p class="card_product-name">Мясная бомба</p>
+                        <div class="spacer"></div>
+                        <span class="card_product-weight">520</span>
+                        <button class="button add-button">Добавить</button>
+                    </div>
+
+                    <div class="product_card">
+                        <div class="card_product-image">
+                            <img src="./img/products/burgers/meat-bomb.png" alt="Мясная бомба">
+                        </div>
+                        <p class="product_price card_product-price">689</p>
+                        <p class="card_product-name">Мясная бомба</p>
+                        <div class="spacer"></div>
+                        <span class="card_product-weight">520</span>
+                        <button class="button add-button">Добавить</button>
+                    </div>
+
+                    <div class="product_card">
+                        <div class="card_product-image">
+                            <img src="./img/products/burgers/meat-bomb.png" alt="Мясная бомба">
+                        </div>
+                        <p class="product_price card_product-price">689</p>
+                        <p class="card_product-name">Мясная бомба</p>
+                        <div class="spacer"></div>
+                        <span class="card_product-weight">520</span>
+                        <button class="button add-button">Добавить</button>
+                    </div>
+                    
+
+                </div>
+                
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+
+            <div class="footer_wrapper">
+
+                <div class="footer-logo_wrapper">
+                    <a href="#!" class="footer-logo"><img src="./img/ui/logo-footer.svg" alt="YourMeal"></a>
+                </div>
+
+                <div class="footer-contacts_wrapper">
+                    <h3 class="footer-title">Номер для заказа</h3>
+                    <a href="#!" type="tel"> <img src="./img/ui/icons/call.svg" alt="Phone">+7(930)833-38-11</a>
+                </div>
+
+                <div class="footer-socials_wrapper">
+                    <h3 class="footer-title">Мы в соцсетях</h3>
+                    <a href="#!"><img src="./img/ui/socials/vk.svg" alt="VK"></a>
+                    <a href="#!"><img src="./img/ui/socials/telegram.svg" alt="Telegram"></a>
+                </div>
+
+                <div class="footer-copyright">
+                    <p>© YouMeal, 2022 <br>Design: Anastasia Ilina</p>
+                </div>
+                
+            </div>
+
+        </div>
+    </footer>
+
+    <div class="modal none">
+        <div class="modal_window">
+
+            <button class="close-button"></button>
+
+            <div class="delivery_wrapper">
+
+                <div class="delivery-image">
+                    <img src="./img/ui/delivery-img.png" alt="">
+                </div>
+
+                <div class="form_wrapper">
+        
+                    <form action="" class="delivery-form">
+        
+                        <h3 class="delivery-form_title">Доставка</h3>
+
+                        <input class="input input_name" type="text" placeholder="Ваше имя">
+                        
+                        <input class="input input_tel" type="tel" placeholder="Ваш телефон">
+        
+                        <div class="radio_wrapper">
+
+                            <input type="radio" class="custom-radio" id="pickup" name="order" value="pickup" checked>
+                            <label for="pickup">Самовывоз</label>
+        
+                            <input type="radio" class="custom-radio" id="delivery" name="order" value="delivery">
+                            <label for="delivery">Доставка</label>
+        
+                            <div class="adress_wrapper" id="adress">
+
+                                <div class="input-adress_wrapper">
+                                    <input class="input input_adress" type="text" placeholder="Улица, дом, квартира">
+                                </div>
+                
+                                <input class="input input_adress-details" type="text" placeholder="Этаж">
+                
+                                <input class="input input_adress-details" type="text" placeholder="Домофон">
+
+                            </div>
+        
+                        </div>
+        
+                        <button class="button order-button" type="submit">Оформить заказ</button>
+        
+                    </form>
+        
+                </div>
+                
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal none">
+        <div class="modal_window">
+            <button class="close-button"></button>
+
+            <div class="product-info_wrapper">
+                    
+                <h2 class="product_title">Мясная бомба</h2>
+
+                <div class="product-details_wrapper">
+
+                    <div class="product-details_left-wrapper">
+
+                        <div class="product_image">
+                            <img src="./img/products/burgers/meat-bomb.png" alt="Мясная бомба">
+                        </div>
+
+                    </div>
+
+                    <div class="product-details_right-wrapper">
+
+                        <p class="product_description">
+                            Супер мясное наслаждение! Большая рубленая котлета из свежего говяжего мяса покорит вас своей сочностью, а хрустящие листья салата добавят свежести.
+                        </p>
+
+                        <div class="ingridients_wrapper">
+                            <h4>Состав:</h4>
+                            <ul class="igridient_list">
+                                <li>Пшеничная булочка</li>
+                                <li>Котлета из говядины</li>
+                                <li>Красный лук</li>
+                                <li>Листья салата</li>
+                                <li>Соус горчичный</li>
+                            </ul>
+                            <p class="nutritional-value">
+                                <span class="product-weight">
+                                    520
+                                </span>
+                                <span class="product-energy">
+                                    430
+                                </span>
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="product-info_buttons-wrapper">
+
+                    <button class="button add-button product-info_add-button">Добавить</button>
+
+                    <div class="product-quantity_wrapper">
+                        <div class="quantity_buttons product-info_quantity-buttons">
+                            <button class="minus-button">-</button>
+                            <p class="quantity-counter">1</p>
+                            <button class="plus-button">+</button>
+                        </div>
+
+                        <p class="product_price">689</p>
+                    </div>
+
+            </div>
+
+        </div>
+
+        </div>
+    </div>
+</body>
+</html>

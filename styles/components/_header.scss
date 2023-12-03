@@ -1,0 +1,119 @@
+header {
+    position: relative;
+    overflow: hidden;
+
+    min-height: 466px;
+
+    @include screen (tablet) {
+        min-height: 349px;
+    }
+
+    @include screen (mobile) {
+        min-height: 459px;
+    }
+}
+
+.background-circle {
+    position: absolute;
+    bottom: 0;
+    right: 50%;
+    transform: translate(50%, 0);
+
+    height: 2880px;
+    width: 2880px;
+    border-radius: 50%;
+    background-color: var(--main-accent-color);
+    z-index: -1;
+
+    @include screen (tablet) {
+        width: 2540px;
+        height: 2540px;
+    }
+
+    @include screen (mobile) {
+        width: 611px;
+        height: 611px;
+    }
+}
+
+.header_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header-logo_wrapper {
+    height: 29px;
+    width: 150px;
+
+    margin-top: 24px;
+}
+
+.header-content_wrapper {
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 21px;
+
+    max-width: 784px;
+
+    margin-top: 24px;
+    margin-bottom: 62px;
+
+    @include screen (tablet) {
+        max-width: 562px;
+    }
+
+    @include screen (mobile) {
+        grid-template-columns: auto;
+        grid-template-rows: auto auto;
+        justify-items: center;
+    }
+}
+
+.header-img_wrapper {
+    width: 326px;
+
+    @include screen (tablet) {
+        width: 229px;
+    }
+}
+
+.header-message_wrapper {
+    max-width: 437px;
+
+    margin-top: 46px;
+
+    @include screen (tablet) {
+        max-width: 325px;
+        margin-top: 27px;
+    }
+
+    @include screen (mobile) {
+        grid-row: 1;
+        margin-top: unset;
+        margin-bottom: 19px;
+        text-align: center;
+    }
+}
+
+.header-message_wrapper p {
+    color: var(--white-color);
+    margin-top: 52px;
+
+    @include screen (tablet) {
+        margin-top: 26px;
+    }
+}
+
+.header-message_wrapper p span {
+    font-weight: 600;
+}
+
+.header_title {
+    color: var(--white-color);
+}
+
+.header_title span {
+    color: var(--secondary-accent-color);
+    color: #FF5C00;
+}

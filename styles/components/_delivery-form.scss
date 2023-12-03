@@ -1,0 +1,127 @@
+.delivery_wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: toRem(384);
+
+    @include screen (tablet) {
+        height: toRem(301);
+    }
+
+    @include screen(mobile) {
+        display: block;
+        height: 100%;
+    }
+}
+
+.delivery-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: toRem(-24) 0 toRem(-24) toRem(-24);
+
+    background: var(--main-accent-color);
+
+    @include screen(tablet) {
+        display: none;
+    }
+}
+
+.delivery-form {
+    font-size: 0.75rem;
+
+    @include screen (mobile) {
+        height: 100%;
+    }
+}
+
+.form_wrapper {
+    position: relative;
+
+    width: toRem(294);
+    height: 100%;
+    margin-left: toRem(24);
+
+    @include screen(tablet) {
+        margin-left: unset;
+        height: toRem(301);
+    }
+
+    @include screen(mobile) {
+        width: 100%;
+    }
+}
+
+.delivery-form_title {
+    margin-top: toRem(20);
+    margin-bottom: toRem(16);
+
+    @include screen(tablet) {
+        margin-top: toRem(4);
+    }
+
+    @include screen(mobile) {
+        margin-top: 0;
+    }
+}
+
+.radio_wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(12);
+
+    margin-top: toRem(16);
+}
+
+.input {
+    width: 100%;
+    height: toRem(40);
+
+    padding: 0 toRem(12);
+    margin-bottom: toRem(8);
+
+    border-radius: 12px;
+    border: 1px solid var(--grey-color);
+
+    color: var(--black-color);
+    background: var(--white-color);
+
+    &::placeholder {
+        color: #B1B1B1;
+    }
+
+    &:hover {
+        border: 1px solid var(--main-accent-color);
+    }
+
+    &:active {
+        border: 1px solid var(--main-accent-color);
+    }
+
+    &:focus {
+        border: 1px solid var(--main-accent-color);
+    }
+
+    @include screen(tablet) {
+        height: toRem(30);
+    }
+}
+
+.adress_wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repat (2, 1fr);
+    column-gap: toRem(8);
+    box-sizing: border-box;
+
+    margin-top: toRem(4);
+
+    visibility: hidden;
+}
+
+#delivery:checked ~ #adress {
+    visibility: visible;
+}
+
+.input-adress_wrapper {
+    grid-column: 1 / 3;
+}

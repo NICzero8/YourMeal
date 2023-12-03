@@ -1,0 +1,25 @@
+@function toRem($value) {
+    $remValue: ($value / 16) + rem; 
+    @return $remValue;
+}
+
+@mixin screen ($breakpoint) {
+
+    @if $breakpoint == medium {    
+        @media only screen and (max-width: 1024px) {
+          @content;
+        }
+      }
+  
+    @if $breakpoint == tablet {    
+    @media only screen and (max-width: 768px) {
+      @content;
+    }
+  }
+ 
+  @if $breakpoint == mobile {
+    @media only screen and (max-width: 480px) {
+      @content;
+    }
+  }
+}

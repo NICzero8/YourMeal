@@ -1,0 +1,113 @@
+.button {
+    width: 100%;
+    height: toRem(40);
+    border-radius: 12px;
+
+    transition: background-color ease-in 0.2s;
+
+    @include screen(tablet) {
+        height: toRem(30);
+        border-radius: 8px;
+    }
+}
+
+.order-button {
+    background: var(--secondary-accent-color);
+    color: var(--white-color);
+
+    &:hover {
+        background: var(--main-accent-color);
+    }
+
+    &:active {
+        background: var(--button-pressed);
+    }
+
+    &[disabled] {
+        background: var(--main-bg-color);
+        color: #ACACAC;
+    }
+}
+
+.add-button {
+    background: var(--grey-color);
+    color: var(--black-color);
+
+    &:hover {
+        background: var(--main-accent-color);
+        color: var(--white-color);
+    }
+
+    &:active {
+        background: var(--button-pressed);
+    }
+
+    &[disabled] {
+        background: var(--main-bg-color);
+        color: #ACACAC;
+    }
+}
+
+.product-info_add-button {
+    background-color: var(--secondary-accent-color);
+    color: var(--white-color);
+}
+
+.quantity_buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    height: toRem(40);
+    width: toRem(84);
+    border-radius: 12px;
+    overflow: hidden;
+
+    background: var(--grey-color);
+
+    @include screen(tablet) {
+        height: toRem(30);
+        width: toRem(74);
+        border-radius: 8px;
+    }
+}
+
+.minus-button, .plus-button {
+    padding: toRem(9) toRem(12);
+    border-radius: 12px;
+
+    transition: background-color ease-in 0.2s;
+
+    &:hover {
+        background: var(--main-accent-color);
+    }
+
+    &:active {
+        background: var(--button-pressed);
+    }
+}
+
+.close-button {
+    position: absolute;
+    top: toRem(24); right: toRem(24);
+
+    z-index: 3;
+
+    width: toRem(24);
+    height: toRem(24);
+
+    background-image: url(./../img/ui/buttons/close.svg);
+    background-size: cover;
+
+    @include screen(tablet) {
+        top: toRem(16); right: toRem(16);
+    }
+
+    @include screen(mobile) {
+        top: toRem(10); right: toRem(10);
+    }
+}
+
+.close-button:hover, .close-button:active {
+    background-image: url(./../img/ui/buttons/close-active.svg);
+}

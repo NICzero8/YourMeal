@@ -1,0 +1,50 @@
+.product_card {
+    display: flex;
+    flex-direction: column;
+
+    // aspect-ratio: 30 / 41;
+    max-width: 300px;
+    // height: 411px;
+    border-radius: 18px;
+
+    padding: 12px;
+
+    background: var(--white-color);
+
+    @include screen (tablet) {
+        // aspect-ratio: unset;
+        max-width: 145px;
+        // height: 243px;
+        border-radius: 12px;
+        padding: 4px;
+    }
+
+    @include screen (mobile) {
+        max-width: unset;
+    }
+}
+
+.card_product-image {
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: toRem(16);
+} 
+
+.card_product-name {
+    display: block;
+    margin-bottom: auto;
+}
+
+.card_product-weight {
+    color: #B1B1B1;
+
+    margin-bottom: toRem(8);
+
+    @include screen(tablet) {
+        font-size: toRem(12);
+    }
+}
+
+.card_product-weight::after {
+    content: "г";
+}
