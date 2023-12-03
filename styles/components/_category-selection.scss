@@ -3,9 +3,7 @@
     max-width: 1330px;
     padding: 0 20px;
 
-    position: relative;
     overflow-x: scroll;
-
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;   /* Firefox */
 
@@ -14,6 +12,7 @@
     }
 
     @include screen (tablet) {
+        max-width: 660px;
         margin-top: 30px;
         margin-bottom: 30px;
         padding: 0 10px;

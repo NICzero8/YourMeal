@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>YourMeal — доставка лучших бургеров</title>
+    <link rel="shortcut icon" type="image/svg" href="./img/ui/icons/favicon.svg"/>
     <link rel="stylesheet" href="./styles/main.css">
 </head>
 <body>
@@ -89,12 +90,12 @@
 
                 <div class="cart_wrapper">
 
-                    <button class="cart_mobile-button">
+                    <button id="openCart" class="cart_mobile-button">
                         <h3>Корзина</h3>
                         <p class="cart_counter">4</p>
                     </button>
 
-                    <div class="cart">
+                    <div id="cart" class="cart">
 
                         <div class="cart_title">
                             <h3>Корзина</h3>
@@ -175,7 +176,7 @@
                                 <p class="cart_free-delivery">Бесплатная доставка</p>
                                 <p class="cart_paid-delivery none">Стоимость доставки: <span class="cart_delivery-price">400</span></p>
                             </div>
-                            <button class="cart_mobile-button_close">Свернуть</button>
+                            <button id="closeCart" class="cart_mobile-button_close">Свернуть</button>
                         </div>
 
                     </div>
@@ -419,5 +420,7 @@
 
         </div>
     </div>
+
+    <script src="./js/main.js"></script>
 </body>
 </html>
