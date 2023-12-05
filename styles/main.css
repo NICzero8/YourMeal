@@ -593,6 +593,9 @@ header {
 .category_button:active {
   background: var(--button-pressed);
 }
+.category_button[disabled] {
+  background: var(--main-accent-color);
+}
 @media only screen and (max-width: 768px) {
   .category_button {
     font-size: 0.75rem;
@@ -630,6 +633,12 @@ header {
     grid-template-rows: auto auto auto;
     gap: 20px;
   }
+}
+
+.no-products_message {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  color: #B1B1B1;
 }
 
 .category_name {

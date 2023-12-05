@@ -23,6 +23,12 @@
     }
 }
 
+.no-products_message {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    color: #B1B1B1;
+}
+
 .category_name {
     grid-column: 2;
     grid-row: 1;

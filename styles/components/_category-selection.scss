@@ -58,6 +58,10 @@
         background: var(--button-pressed);
     }
 
+    &[disabled] {
+        background: var(--main-accent-color);
+    }
+
     @include screen (tablet) {
         font-size: toRem(12);
         padding: 3px 8px;
