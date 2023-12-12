@@ -13,13 +13,27 @@ cartOpenButton.onclick = function () {
 
 cartCloseButton.onclick = function () {
 
-  cartElement.classList.remove("cart-open");
+  cartElement.classList.add('cart-close');
+
+  setTimeout(function() {
+    
+    cartElement.classList.remove('cart-open');
+    cartElement.classList.remove('cart-close');   
+
+  }, 100);
 
 };
 
-cartTitle.addEventListener("click", function () {
+cartTitle.addEventListener('click', function () {
 
-  cartElement.classList.remove("cart-open");
+  cartElement.classList.add('cart-close');
+
+  setTimeout(function() {
+    
+    cartElement.classList.remove('cart-open');
+    cartElement.classList.remove('cart-close');   
+
+  }, 100);
 
 });
 
@@ -167,15 +181,15 @@ function showProductInfo(selectedCard) {
 
             </div>
 
-            <div data-id="${selectedProduct.id}" class="product-info_buttons-wrapper">
+            <div data-id="${selectedProduct.id}" data-modal="true" class="product-info_buttons-wrapper">
 
                 <button class="button add-button product-info_add-button">Добавить</button>
 
                 <div class="product-quantity_wrapper">
                     <div class="quantity_buttons product-info_quantity-buttons">
-                        <button class="minus-button">-</button>
+                        <button data-button="minus" class="minus-button">-</button>
                         <p class="quantity-counter">${selectedProduct.quantity}</p>
-                        <button class="plus-button">+</button>
+                        <button data-button="plus" class="plus-button">+</button>
                     </div>
 
                     <p class="product_price">${selectedProduct.price}</p>
@@ -191,10 +205,14 @@ function showProductInfo(selectedCard) {
   document.body.insertAdjacentHTML("beforeend", productHTML);
 
   document.getElementById("closeModal").onclick = function () {
-    document.getElementById("modal").remove();
-    document.body.classList.remove('no-scroll');
+    closeModal ();
   };
 
+};
+
+function closeModal () {
+  document.getElementById("modal").remove();
+    document.body.classList.remove('no-scroll');
 };
 
 
@@ -273,7 +291,15 @@ function renderCart() {
   }
 
   cartCounter.forEach(function(counter) {
+
     counter.textContent = totalQuantity;
+    counter.classList.add('shake');
+    setTimeout(function() {
+
+      counter.classList.remove('shake');
+
+    }, 700)
+
   });
 
   if (totalPrice > 599) {
@@ -297,7 +323,27 @@ window.addEventListener("click", function (event) {
 
     const selectedProduct = productsArray.find((product) => product.id == event.target.parentNode.dataset.id);
 
-    addToCart(selectedProduct);
+    // Check if this button is in product-info modal window:
+
+    if (event.target.parentNode.dataset.modal === 'true') {
+
+      const counterElement = event.target.parentNode.querySelector('.quantity-counter');
+      let counter = event.target.parentNode.querySelector('.quantity-counter').textContent;
+
+      while (counter > 0) {
+        addToCart(selectedProduct);
+        --counter;
+      }
+
+      counterElement.textContent = 1;
+
+      closeModal();
+
+    } else {
+
+        addToCart(selectedProduct);
+
+      };
 
     renderCart ();
   }
@@ -314,7 +360,7 @@ function addToCart (selectedProduct) {
 
   } else {
 
-    // Check if there is same item in cart already
+    // Check if there is the same item in cart already
 
     let cartItem = cart.find(product => product.id == selectedProduct.id);
 
@@ -337,19 +383,39 @@ function addToCart (selectedProduct) {
 
 window.addEventListener("click", function (event) {
 
-  const selectedProduct = cart.find((product) => product.id == event.target.parentNode.dataset.id);
+  // Check if this button is in product-info modal window:
 
-  if (event.target.dataset.button === ('plus')) {
+  if (event.target.closest('[data-modal]')) {
 
-    cartIncrease(selectedProduct);
-    renderCart();
+    const counter = event.target.parentNode.querySelector('.quantity-counter');
 
-  } else if (event.target.dataset.button === ('minus')) {
+    if (event.target.dataset.button === ('plus')) {
+      counter.textContent = ++counter.textContent;
+    } else if (event.target.dataset.button === ('minus')) {
+      if (parseInt(counter.textContent) > 1) {
+        counter.textContent = --counter.textContent;
+      }
+    }
 
-    cartReduce(selectedProduct);
-    renderCart();
-  
-  }
+  } else {
+    
+    const selectedProduct = cart.find((product) => product.id == event.target.parentNode.dataset.id);
+
+    if (event.target.dataset.button === ('plus')) {
+
+      cartIncrease(selectedProduct);
+      renderCart();
+
+    } else if (event.target.dataset.button === ('minus')) {
+
+      cartReduce(selectedProduct);
+      renderCart();
+    
+    }
+
+  };
+
+
 
 });
 
