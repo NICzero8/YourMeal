@@ -1,20 +1,26 @@
-// Cart Buttons
+// Mobile cart buttons
 
-const cart = document.getElementById("cart");
+const cartElement = document.getElementById("cart");
 const cartOpenButton = document.getElementById("openCart");
 const cartTitle = document.querySelector(".cart_title");
 const cartCloseButton = document.getElementById("closeCart");
 
 cartOpenButton.onclick = function () {
-  cart.classList.add("cart-open");
+
+  cartElement.classList.add("cart-open");
+
 };
 
 cartCloseButton.onclick = function () {
-  cart.classList.remove("cart-open");
+
+  cartElement.classList.remove("cart-open");
+
 };
 
 cartTitle.addEventListener("click", function () {
-  cart.classList.remove("cart-open");
+
+  cartElement.classList.remove("cart-open");
+
 });
 
 
@@ -24,13 +30,16 @@ const categoryButtons = document.querySelectorAll(".category_button");
 const productsContainer = document.getElementById("productsContainer");
 
 async function getProducts() {
+
   const response = await fetch(`./products/products.json`);
 
   productsArray = await response.json();
   return productsArray;
-}
+
+};
 
 async function renderProducts() {
+
   const selectedCategory = document.querySelector(".category_selected");
   const categoryName = document.querySelector(".category_name");
 
@@ -41,28 +50,33 @@ async function renderProducts() {
 
   await getProducts();
 
-  productsArray.forEach(function (item) {
-    if (item.category === selectedCategory.dataset.category) {
+  productsArray.forEach(function (product) {
+
+    if (product.category === selectedCategory.dataset.category) {
+
       const productHTML = `
-            <div data-id="${item.id}" class="product_card">
+            <div data-id="${product.id}" class="product_card">
                 <div class="card_product-image">
-                    <img src="./img/products/${item.category}/${item.image}" alt="${item.name}">
+                    <img src="./img/products/${product.category}/${product.image}" alt="${product.name}">
                 </div>
-                <p class="product_price card_product-price">${item.price}</p>
-                <p class="card_product-name">${item.name}</p>
+                <p class="product_price card_product-price">${product.price}</p>
+                <p class="card_product-name">${product.name}</p>
                 <div class="spacer"></div>
-                <span class="card_product-weight">${item.weight}</span>
+                <span class="card_product-weight">${product.weight}</span>
                 <button class="button add-button">Добавить</button>
             </div>`;
       productsContainer.insertAdjacentHTML("beforeend", productHTML);
+
     }
+
   });
 
   if (productsContainer.innerHTML === "") {
     const productHTML = `<h1 class="no-products_message">Здесь пока ничего нет <nobr>:(</nobr></h1>`;
     productsContainer.insertAdjacentHTML('beforeend', productHTML);
   }
-}
+
+};
 
 
 // Rendering products at page load
@@ -92,31 +106,35 @@ categoryButtons.forEach(function (categoryButton) {
 // Open product information modal window
 
 window.addEventListener("click", function (event) {
-  if (event.target.closest(".product_card")) {
+
+  if (event.target.closest(".product_card") && !event.target.classList.contains('add-button')) {
     const selectedCard = event.target.closest(".product_card");
     showProductInfo(selectedCard);
   }
+
 });
 
 function showProductInfo(selectedCard) {
-  const selectedProduct = productsArray.find(
-    (product) => product.id == selectedCard.dataset.id
-  );
+
+  const selectedProduct = productsArray.find((product) => product.id == selectedCard.dataset.id);
+
+  document.body.classList.add('no-scroll');
 
   let ingridientsHTML = '';
 
-  console.log(selectedProduct);
+  // Make Ul from ingridiens array
 
-// Make Ul from ingridiens array
   selectedProduct.ingridients.forEach((item) => {
+
     ingridientsHTML = `${ingridientsHTML} <li>${item}</li>`;
+
   })
 
   const productHTML = `<div id="modal" class="modal">
     <div class="modal_window">
         <button id="closeModal" class="close-button"></button>
 
-        <div class="product-info_wrapper">
+        <div data-id="${selectedProduct.id}" class="product-info_wrapper">
                 
             <h2 class="product_title">${selectedProduct.name}</h2>
 
@@ -149,7 +167,7 @@ function showProductInfo(selectedCard) {
 
             </div>
 
-            <div class="product-info_buttons-wrapper">
+            <div data-id="${selectedProduct.id}" class="product-info_buttons-wrapper">
 
                 <button class="button add-button product-info_add-button">Добавить</button>
 
@@ -171,7 +189,202 @@ function showProductInfo(selectedCard) {
   </div>`;
 
   document.body.insertAdjacentHTML("beforeend", productHTML);
+
   document.getElementById("closeModal").onclick = function () {
     document.getElementById("modal").remove();
+    document.body.classList.remove('no-scroll');
   };
+
+};
+
+
+// Cart
+
+const cartItemsContainer = document.querySelector('.cart_items');
+const cartCounter = document.querySelectorAll('.cart_counter');
+const cartEmptyMessage = document.querySelector('.cart_empty-message');
+const cartTotalContainer = document.querySelector('.cart_total_wrapper');
+const cartTotalPriceEl = document.querySelector('.cart_total-price');
+const cartOrderButton = document.querySelector('[data-button="order"]');
+const cartDeliveryMessage = document.querySelector('.cart_delivery-message_wrapper');
+const cartFreeDelivery = document.querySelector('.cart_free-delivery');
+const cartPaidDelivery = document.querySelector('.cart_paid-delivery');
+
+getCart();
+
+let cart = JSON.parse(localStorage.getItem('cart'));
+
+renderCart ();
+
+function getCart () {
+  if (!localStorage.getItem('cart')) {
+    localStorage.setItem('cart', '[]')
+  }
+};
+
+function renderCart() {
+
+  let totalQuantity = 0;
+  let totalPrice = 0;
+  cart = JSON.parse(localStorage.getItem('cart'));
+  
+  cartItemsContainer.innerHTML = '';
+
+  if (cart.length === 0) {
+    cartEmptyMessage.classList.remove('none');
+    cartTotalContainer.classList.add('none');
+    cartOrderButton.classList.add('none');
+    cartDeliveryMessage.classList.add('none');
+    totalQuantity = 0;
+  } else {
+
+    cart.forEach(function (product) {
+
+      const cartItemHTML = `<div class="cart_item">
+  
+        <div class="cart_item_img"><img src="./img/products/${product.category}/${product.image}" alt="${product.name}"></div>
+  
+        <div class="cart_item_info">
+            <p class="cart_product-name">${product.name}</p>
+            <span class="cart_product-weight">${product.weight}</span>
+            <p class="cart_product-price">${product.price * product.quantity}</p>
+        </div>
+  
+        <div data-id="${product.id}" class="quantity_buttons">
+            <button data-button="minus" class="minus-button">-</button>
+            <p class="quantity-counter">${product.quantity}</p>
+            <button data-button="plus" class="plus-button">+</button>
+        </div>
+  
+      </div>`;
+  
+      cartItemsContainer.insertAdjacentHTML("beforeend", cartItemHTML);
+
+      totalQuantity = totalQuantity + product.quantity;
+      totalPrice = totalPrice + product.price*product.quantity;
+  
+    })
+
+    cartEmptyMessage.classList.add('none');
+    cartTotalContainer.classList.remove('none');
+    cartOrderButton.classList.remove('none');
+    cartDeliveryMessage.classList.remove('none');
+
+  }
+
+  cartCounter.forEach(function(counter) {
+    counter.textContent = totalQuantity;
+  });
+
+  if (totalPrice > 599) {
+    cartFreeDelivery.classList.remove('none');
+    cartPaidDelivery.classList.add('none');
+  } else {
+    cartFreeDelivery.classList.add('none');
+    cartPaidDelivery.classList.remove('none');
+    totalPrice=totalPrice + 400;
+  }
+  
+  cartTotalPriceEl.textContent = totalPrice;
+
+};
+
+// Add buttons
+
+window.addEventListener("click", function (event) {
+
+  if (event.target.classList.contains('add-button')) {
+
+    const selectedProduct = productsArray.find((product) => product.id == event.target.parentNode.dataset.id);
+
+    addToCart(selectedProduct);
+
+    renderCart ();
+  }
+
+});
+
+function addToCart (selectedProduct) {
+
+  // Check if cart is empty
+
+  if (cart.lenght == 0) {
+
+    cart.push(selectedProduct);
+
+  } else {
+
+    // Check if there is same item in cart already
+
+    let cartItem = cart.find(product => product.id == selectedProduct.id);
+
+    if (cartItem === undefined) {
+
+      cart.push(selectedProduct);
+
+    } else {
+
+      cartIncrease(selectedProduct);
+
+    }
+  }
+
+  localStorage.setItem('cart', JSON.stringify(cart));
+
+};
+
+// Quantity buttons
+
+window.addEventListener("click", function (event) {
+
+  const selectedProduct = cart.find((product) => product.id == event.target.parentNode.dataset.id);
+
+  if (event.target.dataset.button === ('plus')) {
+
+    cartIncrease(selectedProduct);
+    renderCart();
+
+  } else if (event.target.dataset.button === ('minus')) {
+
+    cartReduce(selectedProduct);
+    renderCart();
+  
+  }
+
+});
+
+function cartReduce (selectedProduct) {
+
+  if (selectedProduct.quantity === 1) {
+
+    const newCart = cart.filter(product => product.id != selectedProduct.id);
+
+    localStorage.setItem('cart', JSON.stringify(newCart));
+    
+  } else {
+    for (let product of cart) {
+
+      if (product.id == selectedProduct.id) {
+
+        product.quantity = --product.quantity;
+        localStorage.setItem('cart', JSON.stringify(cart));
+
+      }
+    }
+  };
+
+};
+
+function cartIncrease (selectedProduct) {
+
+  for (let product of cart) {
+
+    if (product.id == selectedProduct.id) {
+
+      product.quantity = ++product.quantity;
+      localStorage.setItem('cart', JSON.stringify(cart));
+
+    }
+  }
+
 };

@@ -770,8 +770,12 @@ header {
 }
 
 .cart_mobile-button_close {
+  position: absolute;
+  right: 10px;
+  bottom: 21px;
   display: none;
   color: #B1B1B1;
+  font-size: 0.625rem;
 }
 .cart_mobile-button_close:hover {
   color: var(--main-accent-color);
@@ -783,6 +787,7 @@ header {
 }
 
 .cart {
+  position: relative;
   display: flex;
   flex-direction: column;
   padding: 24px 16px;
@@ -907,6 +912,18 @@ header {
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.cart_delivery-price::after {
+  content: "₽";
+}
+
+.cart_free-delivery {
+  color: #09bc00;
+}
+
+.cart_paid-delivery {
+  color: var(--secondary-accent-color);
 }
 
 .cart_delivery-message img {
@@ -1171,7 +1188,6 @@ footer {
 }
 
 .product_image {
-  max-width: 18.75rem;
   border-radius: 12px;
   overflow: hidden;
 }

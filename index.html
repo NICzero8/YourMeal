@@ -93,6 +93,8 @@
 
                     <div id="cart" class="cart">
 
+                        <button id="closeCart" class="cart_mobile-button_close">Свернуть</button>
+
                         <div class="cart_title">
                             <h3>Корзина</h3>
                             <p class="cart_counter">4</p>
@@ -100,7 +102,7 @@
 
                         <div class="cart_items">
 
-                            <div class="cart_item">
+                            <!-- <div class="cart_item">
 
                                 <div class="cart_item_img"><img src="./img/products/burgers/super-cheese.png" alt="Супер сырный"></div>
 
@@ -111,48 +113,12 @@
                                 </div>
 
                                 <div class="quantity_buttons">
-                                    <button class="minus-button">-</button>
+                                    <button data-button="minus" class="minus-button">-</button>
                                     <p class="quantity-counter">1</p>
-                                    <button class="plus-button">+</button>
+                                    <button data-button="plus" class="plus-button">+</button>
                                 </div>
 
-                            </div>
-
-                            <div class="cart_item">
-
-                                <div class="cart_item_img"><img src="./img/products/burgers/super-cheese.png" alt="Супер сырный"></div>
-
-                                <div class="cart_item_info">
-                                    <p class="cart_product-name">Супер сырный</p>
-                                    <span class="cart_product-weight">512</span>
-                                    <p class="cart_product-price">520</p>
-                                </div>
-
-                                <div class="quantity_buttons">
-                                    <button class="minus-button">-</button>
-                                    <p class="quantity-counter">1</p>
-                                    <button class="plus-button">+</button>
-                                </div>
-
-                            </div>
-
-                            <div class="cart_item">
-
-                                <div class="cart_item_img"><img src="./img/products/burgers/super-cheese.png" alt="Супер сырный"></div>
-
-                                <div class="cart_item_info">
-                                    <p class="cart_product-name">Супер сырный</p>
-                                    <span class="cart_product-weight">512</span>
-                                    <p class="cart_product-price">520</p>
-                                </div>
-
-                                <div class="quantity_buttons">
-                                    <button class="minus-button">-</button>
-                                    <p class="quantity-counter">1</p>
-                                    <button class="plus-button">+</button>
-                                </div>
-
-                            </div>
+                            </div> -->
 
                         </div>
 
@@ -164,7 +130,7 @@
                             </div>
                         </div>
 
-                        <button class="button order-button" disabled>Оформить заказ</button>
+                        <button data-button="order" class="button order-button">Оформить заказ</button>
 
                         <div class="cart_delivery-message_wrapper">
                             <div class="cart_delivery-message">
@@ -172,7 +138,6 @@
                                 <p class="cart_free-delivery">Бесплатная доставка</p>
                                 <p class="cart_paid-delivery none">Стоимость доставки: <span class="cart_delivery-price">400</span></p>
                             </div>
-                            <button id="closeCart" class="cart_mobile-button_close">Свернуть</button>
                         </div>
 
                     </div>
