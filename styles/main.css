@@ -1180,8 +1180,10 @@ footer {
   color: #B1B1B1;
   text-transform: none;
 }
-.input:hover {
-  border: 1px solid var(--main-accent-color);
+@media (hover: hover) {
+  .input:hover {
+    border: 1px solid var(--main-accent-color);
+  }
 }
 .input:active {
   border: 1px solid var(--main-accent-color);

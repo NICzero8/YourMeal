@@ -90,8 +90,10 @@
         text-transform: none;
     }
 
-    &:hover {
-        border: 1px solid var(--main-accent-color);
+    @include hover-supported () {
+        &:hover {
+            border: 1px solid var(--main-accent-color);
+        }
     }
 
     &:active {
