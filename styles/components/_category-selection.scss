@@ -50,8 +50,10 @@
     background: var(--white-color);
     transition: background-color ease-in 0.2s;
 
-    &:hover {
-        background: var(--main-accent-color);
+    @include hover-supported () {
+        &:hover {
+            background: var(--main-accent-color);
+        }
     }
 
     &:active {

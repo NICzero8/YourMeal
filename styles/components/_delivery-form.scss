@@ -87,6 +87,7 @@
 
     &::placeholder {
         color: #B1B1B1;
+        text-transform: none;
     }
 
     &:hover {
@@ -101,9 +102,43 @@
         border: 1px solid var(--main-accent-color);
     }
 
+    &.input-error {
+        animation: inputError 1s;
+    }
+
     @include screen(tablet) {
         height: toRem(30);
     }
+}
+
+@keyframes inputError {
+    0% {border-color: var(--button-pressed);}
+    10% {border-color: var(--grey-color);}
+    20% {border-color: var(--button-pressed);}
+    30% {border-color: var(--grey-color);}
+    40% {border-color: var(--button-pressed);}
+    50%{border-color: var(--grey-color);}
+    60% {border-color: var(--button-pressed);}
+    70% {border-color: var(--grey-color);}
+    80% {border-color: var(--button-pressed);}
+    90% {border-color: var(--grey-color);}
+    100% {border-color: var(--button-pressed);}
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+input[type='number'],
+input[type="number"]:hover,
+input[type="number"]:focus {
+    appearance: none;
+    -moz-appearance: textfield;
+}
+
+.input_name {
+    text-transform: capitalize;
 }
 
 .adress_wrapper {

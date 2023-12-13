@@ -15,9 +15,12 @@
     background: var(--secondary-accent-color);
     color: var(--white-color);
 
-    &:hover {
-        background: var(--main-accent-color);
+    @include hover-supported () {
+        &:hover {
+            background: var(--main-accent-color);
+        }
     }
+    
 
     &:active {
         background: var(--button-pressed);
@@ -33,10 +36,12 @@
     background: var(--grey-color);
     color: var(--black-color);
 
-    &:hover {
-        background: var(--main-accent-color);
-        color: var(--white-color);
-    }
+    @include hover-supported () {
+        &:hover {
+            background: var(--main-accent-color);
+            color: var(--white-color);
+        }
+    } 
 
     &:active {
         background: var(--button-pressed);
@@ -76,10 +81,12 @@
     padding: toRem(9) toRem(12);
     border-radius: 12px;
 
-    transition: background-color ease-in 0.2s;
+    transition: background-color ease-in 0.1s;
 
-    &:hover {
-        background: var(--main-accent-color);
+    @include hover-supported () {
+        &:hover {
+            background: var(--main-accent-color);
+        }
     }
 
     &:active {
@@ -106,8 +113,14 @@
     @include screen(mobile) {
         top: toRem(10); right: toRem(10);
     }
-}
 
-.close-button:hover, .close-button:active {
-    background-image: url(./../img/ui/buttons/close-active.svg);
+    @include hover-supported () {
+        &:hover {
+            background-image: url(./../img/ui/buttons/close-active.svg);
+        }
+    }
+
+    &:active {
+        background-image: url(./../img/ui/buttons/close-active.svg);
+    }
 }

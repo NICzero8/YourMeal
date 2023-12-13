@@ -20,7 +20,7 @@ cartCloseButton.onclick = function () {
     cartElement.classList.remove('cart-open');
     cartElement.classList.remove('cart-close');   
 
-  }, 100);
+  }, 170);
 
 };
 
@@ -33,7 +33,7 @@ cartTitle.addEventListener('click', function () {
     cartElement.classList.remove('cart-open');
     cartElement.classList.remove('cart-close');   
 
-  }, 100);
+  }, 170);
 
 });
 
@@ -71,7 +71,7 @@ async function renderProducts() {
       const productHTML = `
             <div data-id="${product.id}" class="product_card">
                 <div class="card_product-image">
-                    <img src="./img/products/${product.category}/${product.image}" alt="${product.name}">
+                    <img src="./img/products/${product.category}/${product.image}.png" alt="${product.name}">
                 </div>
                 <p class="product_price card_product-price">${product.price}</p>
                 <p class="card_product-name">${product.name}</p>
@@ -157,7 +157,7 @@ function showProductInfo(selectedCard) {
                 <div class="product-details_left-wrapper">
 
                     <div class="product_image">
-                        <img src="./img/products/${selectedProduct.category}/${selectedProduct.image}" alt="Мясная бомба">
+                        <img src="./img/products/${selectedProduct.category}/${selectedProduct.image}@2x.png" alt="Мясная бомба">
                     </div>
 
                 </div>
@@ -260,7 +260,7 @@ function renderCart() {
 
       const cartItemHTML = `<div class="cart_item">
   
-        <div class="cart_item_img"><img src="./img/products/${product.category}/${product.image}" alt="${product.name}"></div>
+        <div class="cart_item_img"><img src="./img/products/${product.category}/${product.image}.png" alt="${product.name}"></div>
   
         <div class="cart_item_info">
             <p class="cart_product-name">${product.name}</p>
@@ -452,5 +452,191 @@ function cartIncrease (selectedProduct) {
 
     }
   }
+
+};
+
+
+// Delivery form
+
+const deliveryFormButton = document.querySelector('[data-button="order"]');
+
+deliveryFormButton.addEventListener('click', function() {
+
+  showDeliveryWindow();
+
+});
+
+function showDeliveryWindow() {
+
+  const deliveryFormHTML = `<div id="modal" class="modal">
+  <div class="modal_window">
+
+      <button id="closeModal" class="close-button"></button>
+
+      <div class="delivery_wrapper">
+
+          <div class="delivery-image">
+              <img src="./img/ui/delivery-img.png" alt="">
+          </div>
+
+          <div class="form_wrapper">
+  
+              <form id="deliveryForm" action="" class="delivery-form">
+  
+                  <h3 class="delivery-form_title">Доставка</h3>
+
+                  <input data-required="true" data-name="Имя" minlength="2" class="input input_name" type="text" placeholder="Ваше имя">
+                  
+                  <input data-required="true" data-name="Телефон" id="phone" class="input input_tel" type="text" minlength="16" placeholder="Ваш телефон">
+  
+                  <div class="radio_wrapper">
+
+                      <input type="radio" class="custom-radio" id="pickup" name="order" value="pickup" checked>
+                      <label for="pickup">Самовывоз</label>
+  
+                      <input type="radio" class="custom-radio" id="delivery" name="order" value="delivery">
+                      <label for="delivery">Доставка</label>
+  
+                      <div class="adress_wrapper" id="adress">
+
+                          <div class="input-adress_wrapper">
+                              <input id="adressInput" data-name="Адрес" class="input input_adress" type="text" minlength="10" placeholder="Улица, дом, квартира">
+                          </div>
+          
+                          <input data-name="Этаж" class="input input_adress-details" type="number" maxlength="2" placeholder="Этаж">
+          
+                          <input data-name="Домофон" class="input input_adress-details" type="number" maxlength="4" placeholder="Домофон">
+
+                      </div>
+  
+                  </div>
+  
+                  <button class="button order-button" type="submit">Оформить заказ</button>
+  
+              </form>
+  
+          </div>
+          
+      </div>
+
+  </div>
+  </div>`;
+  document.body.insertAdjacentHTML("beforeend", deliveryFormHTML);
+  document.getElementById("closeModal").onclick = function () {
+    closeModal ();
+  };
+
+  makeMask ();
+  formHandler();
+  
+};
+
+function makeMask() {
+  const element = document.getElementById('phone');
+  const maskOptions = {
+    mask: '+{7}(000)000-00-00'
+  };
+  const mask = IMask(element, maskOptions);
+};
+
+function formHandler() {
+  document.getElementById('deliveryForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    if (formValidation(this) == true) {
+
+      alert ("Ваш заказ принят! Уже готовим :)");
+      alert (orderMessage(this))
+      localStorage.setItem('cart', '[]');
+      renderCart ();
+      closeModal()
+
+    };
+
+  });
+};
+
+function formValidation(form) {
+  let result = true;
+  const deliveryRadio = document.getElementById('delivery');
+
+  if (deliveryRadio.checked) {
+    document.getElementById('adressInput').setAttribute('data-required', 'true');
+  }
+
+  function createError(input) {
+    input.classList.add('input-error');
+    setTimeout(function() {
+      input.classList.remove('input-error');
+    }, 1000);
+  };
+
+  form.querySelectorAll('input').forEach(input =>{
+
+    if (input.dataset.required == 'true') {
+
+      if (input.value == '') {
+        result = false;
+        createError(input);
+      };
+
+    } 
+
+  });
+
+  return result;
+};
+
+function orderMessage (form) {
+
+  let orderMessage = 'Сообщение для ресторана. Поступил заказ:';
+  let totalPrice = 0;
+
+  form.querySelectorAll('input').forEach(input =>{
+    if (input.type == 'radio') {
+
+      if (input.checked) {
+        const selector = `label[for="${input.id}"]`;
+        const label = document.querySelector(selector);
+        const text = label.innerHTML;
+  
+        orderMessage = `${orderMessage}
+    Выбрано: ${text}`;
+      }
+
+    } else if (!input.value == '') {
+      orderMessage = `${orderMessage}
+    ${input.dataset.name}: ${input.value}`;
+    }
+    
+  });
+
+  orderMessage = `${orderMessage}
+
+  Состав заказа:`;
+
+  cart.forEach(function (product) {
+
+    orderMessage = `${orderMessage}
+    ${product.name}, ${product.quantity} шт., ${product.price*product.quantity}р`;
+    totalPrice = totalPrice + product.price*product.quantity;
+
+  });
+
+  if (totalPrice > 599) {
+    orderMessage = `${orderMessage}
+
+  Доставка: бесплатно
+  Общая стоимость: ${totalPrice}р`;
+  } else {
+    totalPrice = totalPrice + 400
+
+    orderMessage = `${orderMessage}
+
+  Доставка: 400р 
+  Стоимость: ${totalPrice}Р`;
+  }
+
+  return orderMessage
 
 };

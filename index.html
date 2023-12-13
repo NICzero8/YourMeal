@@ -180,63 +180,65 @@
         </div>
     </footer>
 
-    <div class="modal none">
+<!-- Delivery form modal window -->
+    <!-- <div id="modal" class="modal none">
+  <div class="modal_window">
+
+      <button id="closeModal" class="close-button"></button>
+
+      <div class="delivery_wrapper">
+
+          <div class="delivery-image">
+              <img src="./img/ui/delivery-img.png" alt="">
+          </div>
+
+          <div class="form_wrapper">
+  
+              <form id="deliveryForm" action="" class="delivery-form">
+  
+                  <h3 class="delivery-form_title">Доставка</h3>
+
+                  <input data-required="true" data-name="Имя" minlength="2" class="input input_name" type="text" placeholder="Ваше имя">
+                  
+                  <input data-required="true" data-name="Телефон" id="phone" class="input input_tel" type="text" minlength="16" placeholder="Ваш телефон">
+  
+                  <div class="radio_wrapper">
+
+                      <input type="radio" class="custom-radio" id="pickup" name="order" value="pickup" checked>
+                      <label for="pickup">Самовывоз</label>
+  
+                      <input type="radio" class="custom-radio" id="delivery" name="order" value="delivery">
+                      <label for="delivery">Доставка</label>
+  
+                      <div class="adress_wrapper" id="adress">
+
+                          <div class="input-adress_wrapper">
+                              <input id="adressInput" data-name="Адрес" class="input input_adress" type="text" minlength="10" placeholder="Улица, дом, квартира">
+                          </div>
+          
+                          <input data-name="Этаж" class="input input_adress-details" type="number" maxlength="2" placeholder="Этаж">
+          
+                          <input data-name="Домофон" class="input input_adress-details" type="number" maxlength="4" placeholder="Домофон">
+
+                      </div>
+  
+                  </div>
+  
+                  <button class="button order-button" type="submit">Оформить заказ</button>
+  
+              </form>
+  
+          </div>
+          
+      </div>
+
+  </div>
+  </div> -->
+
+<!-- Product info modal window -->
+    <!-- <div id="modal" class="modal none">
         <div class="modal_window">
-
-            <button class="close-button"></button>
-
-            <div class="delivery_wrapper">
-
-                <div class="delivery-image">
-                    <img src="./img/ui/delivery-img.png" alt="">
-                </div>
-
-                <div class="form_wrapper">
-        
-                    <form action="" class="delivery-form">
-        
-                        <h3 class="delivery-form_title">Доставка</h3>
-
-                        <input class="input input_name" type="text" placeholder="Ваше имя">
-                        
-                        <input class="input input_tel" type="tel" placeholder="Ваш телефон">
-        
-                        <div class="radio_wrapper">
-
-                            <input type="radio" class="custom-radio" id="pickup" name="order" value="pickup" checked>
-                            <label for="pickup">Самовывоз</label>
-        
-                            <input type="radio" class="custom-radio" id="delivery" name="order" value="delivery">
-                            <label for="delivery">Доставка</label>
-        
-                            <div class="adress_wrapper" id="adress">
-
-                                <div class="input-adress_wrapper">
-                                    <input class="input input_adress" type="text" placeholder="Улица, дом, квартира">
-                                </div>
-                
-                                <input class="input input_adress-details" type="text" placeholder="Этаж">
-                
-                                <input class="input input_adress-details" type="text" placeholder="Домофон">
-
-                            </div>
-        
-                        </div>
-        
-                        <button class="button order-button" type="submit">Оформить заказ</button>
-        
-                    </form>
-        
-                </div>
-                
-            </div>
-
-        </div>
-    </div>
-
-    <div class="modal none">
-        <div class="modal_window">
-            <button class="close-button"></button>
+            <button id="closeModal" class="close-button"></button>
 
             <div class="product-info_wrapper">
                     
@@ -300,8 +302,10 @@
         </div>
 
         </div>
-    </div>
+    </div> -->
 
+    <script src="https://unpkg.com/imask"></script>
     <script src="./js/main.js"></script>
+    
 </body>
 </html>

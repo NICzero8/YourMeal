@@ -9,7 +9,7 @@
         "energy": 430,
         "quantity": 1,
         "price": 689,
-        "image": "meat-bomb.png"
+        "image": "meat-bomb"
     },
 
     {
@@ -22,7 +22,7 @@
         "energy": 548,
         "quantity": 1,
         "price": 550,
-        "image": "super-cheese.png"
+        "image": "super-cheese"
     },
 
     {
@@ -35,7 +35,7 @@
         "energy": 626,
         "quantity": 1,
         "price": 639,
-        "image": "satisfying.png"
+        "image": "satisfying"
     },
 
     {
@@ -48,7 +48,7 @@
         "energy": 414,
         "quantity": 1,
         "price": 480,
-        "image": "heavy-punch.png"
+        "image": "heavy-punch"
     },
 
     {
@@ -61,7 +61,7 @@
         "energy": 482,
         "quantity": 1,
         "price": 450,
-        "image": "timeless-classic.png"
+        "image": "timeless-classic"
     },
 
     {
@@ -74,7 +74,7 @@
         "energy": 512,
         "quantity": 1,
         "price": 560,
-        "image": "italian.png"
+        "image": "italian"
     },
 
     {
@@ -87,7 +87,7 @@
         "energy": 340,
         "quantity": 1,
         "price": 290,
-        "image": "home-hotdog.png"
+        "image": "home-hotdog"
     },
 
     {
@@ -100,7 +100,7 @@
         "energy": 320,
         "quantity": 1,
         "price": 239,
-        "image": "spicy-hotdog.png"
+        "image": "spicy-hotdog"
     },
 
     {
@@ -113,7 +113,7 @@
         "energy": 290,
         "quantity": 1,
         "price": 220,
-        "image": "classic-hotdog.png"
+        "image": "classic-hotdog"
     },
 
     {
@@ -126,7 +126,7 @@
         "energy": 430,
         "quantity": 1,
         "price": 250,
-        "image": "nacho.png"
+        "image": "nacho"
     },
 
     {
@@ -139,7 +139,7 @@
         "energy": 280,
         "quantity": 1,
         "price": 245,
-        "image": "fries.png"
+        "image": "fries"
     },
 
     {
@@ -152,7 +152,7 @@
         "energy": 326,
         "quantity": 1,
         "price": 230,
-        "image": "onion-rings.png"
+        "image": "onion-rings"
     }
 
 ]

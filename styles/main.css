@@ -234,8 +234,10 @@ li {
   background: var(--secondary-accent-color);
   color: var(--white-color);
 }
-.order-button:hover {
-  background: var(--main-accent-color);
+@media (hover: hover) {
+  .order-button:hover {
+    background: var(--main-accent-color);
+  }
 }
 .order-button:active {
   background: var(--button-pressed);
@@ -249,9 +251,11 @@ li {
   background: var(--grey-color);
   color: var(--black-color);
 }
-.add-button:hover {
-  background: var(--main-accent-color);
-  color: var(--white-color);
+@media (hover: hover) {
+  .add-button:hover {
+    background: var(--main-accent-color);
+    color: var(--white-color);
+  }
 }
 .add-button:active {
   background: var(--button-pressed);
@@ -287,10 +291,12 @@ li {
 .minus-button, .plus-button {
   padding: 0.5625rem 0.75rem;
   border-radius: 12px;
-  transition: background-color ease-in 0.2s;
+  transition: background-color ease-in 0.1s;
 }
-.minus-button:hover, .plus-button:hover {
-  background: var(--main-accent-color);
+@media (hover: hover) {
+  .minus-button:hover, .plus-button:hover {
+    background: var(--main-accent-color);
+  }
 }
 .minus-button:active, .plus-button:active {
   background: var(--button-pressed);
@@ -318,8 +324,12 @@ li {
     right: 0.625rem;
   }
 }
-
-.close-button:hover, .close-button:active {
+@media (hover: hover) {
+  .close-button:hover {
+    background-image: url(./../img/ui/buttons/close-active.svg);
+  }
+}
+.close-button:active {
   background-image: url(./../img/ui/buttons/close-active.svg);
 }
 
@@ -587,8 +597,10 @@ header {
   background: var(--white-color);
   transition: background-color ease-in 0.2s;
 }
-.category_button:hover {
-  background: var(--main-accent-color);
+@media (hover: hover) {
+  .category_button:hover {
+    background: var(--main-accent-color);
+  }
 }
 .category_button:active {
   background: var(--button-pressed);
@@ -636,8 +648,8 @@ header {
 }
 
 .no-products_message {
-  margin-top: 2.5rem;
-  margin-bottom: 6.25rem;
+  margin-top: 3.125rem;
+  margin-bottom: 9.375rem;
   grid-column-start: 1;
   grid-column-end: 3;
   color: #B1B1B1;
@@ -724,6 +736,7 @@ header {
 .card_product-image {
   border-radius: 12px;
   overflow: hidden;
+  border: 1px solid var(--black-color);
   margin-bottom: 1rem;
 }
 
@@ -755,7 +768,12 @@ header {
   border-radius: 12px;
   transition: background-color ease-in 0.2s;
 }
-.cart_mobile-button:hover {
+@media (hover: hover) {
+  .cart_mobile-button:hover {
+    background: var(--main-accent-color);
+  }
+}
+.cart_mobile-button:active {
   background: var(--main-accent-color);
 }
 @media only screen and (max-width: 768px) {
@@ -826,24 +844,32 @@ header {
   0% {
     transform: scale(0.5, 0.15);
     z-index: -1;
+    opacity: 0.2;
   }
   50% {
     z-index: unset;
+    opacity: 0.7;
   }
   100% {
     transform: scale(1);
+    opacity: 1;
   }
 }
 @keyframes closeCart {
   0% {
     transform: scale(1);
   }
-  70% {
+  50% {
+    opacity: 0.6;
+  }
+  80% {
     z-index: -1;
+    opacity: 0.2;
   }
   100% {
     transform: scale(0.5, 0.15);
     z-index: -1;
+    opacity: 0.1;
   }
 }
 .cart_title {
@@ -1148,9 +1174,11 @@ footer {
 }
 .input::-moz-placeholder {
   color: #B1B1B1;
+  text-transform: none;
 }
 .input::placeholder {
   color: #B1B1B1;
+  text-transform: none;
 }
 .input:hover {
   border: 1px solid var(--main-accent-color);
@@ -1161,10 +1189,65 @@ footer {
 .input:focus {
   border: 1px solid var(--main-accent-color);
 }
+.input.input-error {
+  animation: inputError 1s;
+}
 @media only screen and (max-width: 768px) {
   .input {
     height: 1.875rem;
   }
+}
+
+@keyframes inputError {
+  0% {
+    border-color: var(--button-pressed);
+  }
+  10% {
+    border-color: var(--grey-color);
+  }
+  20% {
+    border-color: var(--button-pressed);
+  }
+  30% {
+    border-color: var(--grey-color);
+  }
+  40% {
+    border-color: var(--button-pressed);
+  }
+  50% {
+    border-color: var(--grey-color);
+  }
+  60% {
+    border-color: var(--button-pressed);
+  }
+  70% {
+    border-color: var(--grey-color);
+  }
+  80% {
+    border-color: var(--button-pressed);
+  }
+  90% {
+    border-color: var(--grey-color);
+  }
+  100% {
+    border-color: var(--button-pressed);
+  }
+}
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input[type=number],
+input[type=number]:hover,
+input[type=number]:focus {
+  -webkit-appearance: none;
+          appearance: none;
+  -moz-appearance: textfield;
+}
+
+.input_name {
+  text-transform: capitalize;
 }
 
 .adress_wrapper {

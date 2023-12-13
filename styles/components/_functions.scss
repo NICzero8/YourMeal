@@ -23,3 +23,9 @@
     }
   }
 }
+
+@mixin hover-supported {    
+  @media (hover: hover) { 
+    @content;
+  }
+}
