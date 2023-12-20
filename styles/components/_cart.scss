@@ -80,13 +80,13 @@
     @include screen (tablet) {
         display: flex;
 
-        animation: openCart 0.2s ease-in-out;
+        animation: openCart 0.2s ease-in-out forwards;
     }
 }
 
 .cart-close {
     @include screen (tablet) {
-        animation: closeCart 0.2s ease-in-out;
+        animation: closeCart 0.2s ease-in-out forwards;
     }
 }
 

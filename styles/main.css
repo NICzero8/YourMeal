@@ -213,7 +213,7 @@ li {
   }
 }
 
-.no-scroll {
+.modal-active {
   overflow-y: hidden;
 }
 
@@ -392,7 +392,24 @@ li {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(0, 0, 0, 0.8);
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: rgba(0, 0, 0, 0);
+  animation: fadeIn 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+.modal.modal_close-animation {
+  animation: fadeOut 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+.modal.modal_close-animation .modal_window {
+  animation: roadRunnerOut 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+@media only screen and (max-width: 480px) {
+  .modal {
+    align-items: flex-start;
+  }
+  .modal.modal_close-animation .modal_window {
+    animation: scaleDown 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+  }
 }
 
 .modal_window {
@@ -400,9 +417,11 @@ li {
   width: 42.75rem;
   padding: 1.5rem;
   border-radius: 24px;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   background: var(--main-bg-color);
   box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1019607843);
+  animation: roadRunnerIn 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 @media only screen and (max-width: 768px) {
   .modal_window {
@@ -419,9 +438,69 @@ li {
     max-height: unset;
     padding: 2rem 0.625rem;
     border-radius: 0;
+    opacity: 0;
+    animation: scaleUp 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
   }
 }
 
+@keyframes fadeIn {
+  0% {
+    background: rgba(0, 0, 0, 0);
+  }
+  100% {
+    background: rgba(0, 0, 0, 0.8);
+  }
+}
+@keyframes fadeOut {
+  0% {
+    background: rgba(0, 0, 0, 0.8);
+  }
+  100% {
+    background: rgba(0, 0, 0, 0);
+  }
+}
+@keyframes roadRunnerIn {
+  0% {
+    transform: translateX(-1500px) skewX(30deg) scaleX(1.3);
+  }
+  70% {
+    transform: translateX(30px) skewX(0deg) scaleX(0.9);
+  }
+  100% {
+    transform: translateX(0px) skewX(0deg) scaleX(1);
+  }
+}
+@keyframes roadRunnerOut {
+  0% {
+    transform: translateX(0px) skewX(0deg) scaleX(1);
+  }
+  30% {
+    transform: translateX(-30px) skewX(-5deg) scaleX(0.9);
+  }
+  100% {
+    transform: translateX(1500px) skewX(30deg) scaleX(1.3);
+  }
+}
+@keyframes scaleUp {
+  0% {
+    transform: scale(0.8) translateY(1000px);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) translateY(0px);
+    opacity: 1;
+  }
+}
+@keyframes scaleDown {
+  0% {
+    transform: scale(1) translateY(0px);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.8) translateY(1000px);
+    opacity: 0;
+  }
+}
 header {
   position: relative;
   overflow: hidden;
@@ -498,6 +577,7 @@ header {
 
 .header-img_wrapper {
   width: 326px;
+  animation: floating 3s ease-in-out infinite;
 }
 @media only screen and (max-width: 768px) {
   .header-img_wrapper {
@@ -505,6 +585,17 @@ header {
   }
 }
 
+@keyframes floating {
+  from {
+    transform: translate(0, 0px);
+  }
+  65% {
+    transform: translate(0, 15px);
+  }
+  to {
+    transform: translate(0, 0px);
+  }
+}
 .header-message_wrapper {
   max-width: 437px;
   margin-top: 46px;
@@ -830,13 +921,13 @@ header {
 @media only screen and (max-width: 768px) {
   .cart-open {
     display: flex;
-    animation: openCart 0.2s ease-in-out;
+    animation: openCart 0.2s ease-in-out forwards;
   }
 }
 
 @media only screen and (max-width: 768px) {
   .cart-close {
-    animation: closeCart 0.2s ease-in-out;
+    animation: closeCart 0.2s ease-in-out forwards;
   }
 }
 
@@ -1345,6 +1436,11 @@ input[type=number]:focus {
   gap: 0.25rem;
   margin-top: 0.625rem;
 }
+@media only screen and (max-width: 480px) {
+  .ingridients_wrapper {
+    margin-bottom: 5.3125rem;
+  }
+}
 
 @media only screen and (max-width: 768px) {
   .ingridient_list {
@@ -1395,10 +1491,21 @@ input[type=number]:focus {
 }
 @media only screen and (max-width: 480px) {
   .product-info_buttons-wrapper {
-    position: absolute;
+    position: fixed;
     bottom: 2rem;
     left: 0.625rem;
     right: 0.625rem;
+    z-index: 2;
+  }
+  .product-info_buttons-wrapper::before {
+    content: "";
+    position: absolute;
+    top: -30px;
+    bottom: -32px;
+    left: -1px;
+    right: -1px;
+    z-index: -1;
+    background: linear-gradient(rgba(0, 0, 0, 0), var(--main-bg-color) 20%);
   }
 }
 

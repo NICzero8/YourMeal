@@ -73,9 +73,17 @@ header {
 .header-img_wrapper {
     width: 326px;
 
+    animation: floating 3s ease-in-out infinite;
+
     @include screen (tablet) {
         width: 229px;
     }
+}
+
+@keyframes floating {
+    from { transform: translate(0,  0px); }
+    65%  { transform: translate(0, 15px); }
+    to   { transform: translate(0, -0px); }    
 }
 
 .header-message_wrapper {

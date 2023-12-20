@@ -66,6 +66,10 @@
     gap: toRem(4);
 
     margin-top: toRem(10);
+
+    @include screen(mobile) {
+        margin-bottom: toRem(85);
+    }
 }
 
 .ingridient_list {
@@ -115,8 +119,19 @@
     }
 
     @include screen(mobile) {
-        position: absolute;
+        position: fixed;
         bottom: toRem(32); left: toRem(10); right: toRem(10);
+        z-index: 2;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: -30px;
+            bottom: -32px;
+            left: -1px; right: -1px;
+            z-index: -1;
+            background: linear-gradient(rgba(0,0,0,0), var(--main-bg-color) 20%);
+        }
     }
 }
 

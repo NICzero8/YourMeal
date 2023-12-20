@@ -11,7 +11,12 @@ cartOpenButton.onclick = function () {
 
 };
 
-cartCloseButton.onclick = function () {
+cartCloseButton.onclick = closeCart;
+
+cartTitle.addEventListener('click', closeCart);
+
+
+function closeCart() {
 
   cartElement.classList.add('cart-close');
 
@@ -20,23 +25,9 @@ cartCloseButton.onclick = function () {
     cartElement.classList.remove('cart-open');
     cartElement.classList.remove('cart-close');   
 
-  }, 170);
+  }, 200);
 
 };
-
-cartTitle.addEventListener('click', function () {
-
-  cartElement.classList.add('cart-close');
-
-  setTimeout(function() {
-    
-    cartElement.classList.remove('cart-open');
-    cartElement.classList.remove('cart-close');   
-
-  }, 170);
-
-});
-
 
 // Render Products based on selected category
 
@@ -100,20 +91,24 @@ renderProducts();
 
 // Selecting category
 
+function changeCategory() {
+
+  categoryButtons.forEach(function (categoryButton) {
+    categoryButton.classList.remove("category_selected");
+    categoryButton.disabled = false;
+  });
+
+  this.classList.add("category_selected");
+  this.disabled = true;
+
+  renderProducts();
+
+};
+
 categoryButtons.forEach(function (categoryButton) {
 
-  categoryButton.addEventListener("click", function () {
+  categoryButton.addEventListener("click", changeCategory);
 
-    categoryButtons.forEach(function (categoryButton) {
-      categoryButton.classList.remove("category_selected");
-      categoryButton.disabled = false;
-    });
-
-    this.classList.add("category_selected");
-    this.disabled = true;
-
-    renderProducts();
-  });
 });
 
 
@@ -132,7 +127,7 @@ function showProductInfo(selectedCard) {
 
   const selectedProduct = productsArray.find((product) => product.id == selectedCard.dataset.id);
 
-  document.body.classList.add('no-scroll');
+  document.body.classList.add('modal-active');
 
   let ingridientsHTML = '';
 
@@ -145,7 +140,7 @@ function showProductInfo(selectedCard) {
   })
 
   const productHTML = `<div id="modal" class="modal">
-    <div class="modal_window">
+    <div id="modalWindow" class="modal_window">
         <button id="closeModal" class="close-button"></button>
 
         <div data-id="${selectedProduct.id}" class="product-info_wrapper">
@@ -204,16 +199,23 @@ function showProductInfo(selectedCard) {
 
   document.body.insertAdjacentHTML("beforeend", productHTML);
 
-  document.getElementById("closeModal").onclick = function () {
-    closeModal ();
-  };
+  document.getElementById("closeModal").onclick = closeModal;
 
 };
 
 function closeModal () {
-  document.getElementById("modal").remove();
-    document.body.classList.remove('no-scroll');
+
+  document.getElementById("modal").classList.add('modal_close-animation');
+  // document.getElementById("modalWindow").classList.add('window_close-animation');
+
+  setTimeout(function() {
+    document.getElementById("modal").remove(); 
+  }, 500);
+
+  document.body.classList.remove('modal-active');
 };
+
+window.onhashchange = closeModal;
 
 
 // Cart
@@ -390,11 +392,15 @@ window.addEventListener("click", function (event) {
     const counter = event.target.parentNode.querySelector('.quantity-counter');
 
     if (event.target.dataset.button === ('plus')) {
+
       counter.textContent = ++counter.textContent;
+
     } else if (event.target.dataset.button === ('minus')) {
+
       if (parseInt(counter.textContent) > 1) {
         counter.textContent = --counter.textContent;
       }
+
     }
 
   } else {
@@ -414,8 +420,6 @@ window.addEventListener("click", function (event) {
     }
 
   };
-
-
 
 });
 
@@ -460,16 +464,14 @@ function cartIncrease (selectedProduct) {
 
 const deliveryFormButton = document.querySelector('[data-button="order"]');
 
-deliveryFormButton.addEventListener('click', function() {
-
-  showDeliveryWindow();
-
-});
+deliveryFormButton.addEventListener('click', showDeliveryWindow);
 
 function showDeliveryWindow() {
 
+  document.body.classList.add('modal-active');
+
   const deliveryFormHTML = `<div id="modal" class="modal">
-  <div class="modal_window">
+  <div id="modalWindow" class="modal_window">
 
       <button id="closeModal" class="close-button"></button>
 
@@ -546,10 +548,10 @@ function formHandler() {
     if (formValidation(this) == true) {
 
       alert ("Ваш заказ принят! Уже готовим :)");
-      alert (orderMessage(this))
+      alert (orderMessage(this));
       localStorage.setItem('cart', '[]');
       renderCart ();
-      closeModal()
+      closeModal();
 
     };
 
