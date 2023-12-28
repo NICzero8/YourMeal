@@ -6,6 +6,9 @@
     <title>YourMeal — доставка лучших бургеров</title>
     <link rel="shortcut icon" type="image/svg" href="./img/ui/icons/favicon.svg"/>
     <link rel="stylesheet" href="./styles/main.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/progressive-image.js/dist/progressive-image.css">
+    <script src="https://cdn.jsdelivr.net/npm/progressive-image.js/dist/progressive-image.js" defer></script>
 </head>
 <body>
     <header>
@@ -37,7 +40,7 @@
 
     <section class="products">
         <div class="product-category_selection">
-            <ul class="category_list">
+            <ul id="selectCategory" class="category_list">
     
                 <li><button data-category="burgers" class="category_button  category_selected">
                     <img src="img/ui/icons/burger.svg" alt="Бургеры"> Бургеры

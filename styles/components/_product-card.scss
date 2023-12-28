@@ -3,6 +3,7 @@
     flex-direction: column;
 
     // aspect-ratio: 30 / 41;
+    width: 100%;
     max-width: 300px;
     max-height: toRem(411);
     // height: 411px;
@@ -27,6 +28,7 @@
 
 .card_product-image {
     border-radius: 12px;
+    aspect-ratio: 276 / 220;
     overflow: hidden;
     border: 1px solid var(--black-color);
     margin-bottom: toRem(16);

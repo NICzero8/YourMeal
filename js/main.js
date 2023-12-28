@@ -31,8 +31,9 @@ function closeCart() {
 
 // Render Products based on selected category
 
-const categoryButtons = document.querySelectorAll(".category_button");
-const productsContainer = document.getElementById("productsContainer");
+const categoryButtons = document.querySelectorAll('.category_button');
+const productsContainer = document.getElementById('productsContainer');
+const selectCategory = document.getElementById('selectCategory');
 
 async function getProducts() {
 
@@ -61,8 +62,8 @@ async function renderProducts() {
 
       const productHTML = `
             <div data-id="${product.id}" class="product_card">
-                <div class="card_product-image">
-                    <img src="./img/products/${product.category}/${product.image}.png" alt="${product.name}">
+                <div data-href="./img/products/${product.category}/${product.image}.png" class="card_product-image progressive replace">
+                    <img class="preview" src="./img/products/${product.category}/${product.image}@preview.jpg" alt="${product.name}">
                 </div>
                 <p class="product_price card_product-price">${product.price}</p>
                 <p class="card_product-name">${product.name}</p>
@@ -91,25 +92,23 @@ renderProducts();
 
 // Selecting category
 
-function changeCategory() {
+selectCategory.addEventListener('click', function(event) {
+  if (event.target.classList.contains('category_button')) {changeCategory(event.target)};
+});
+
+function changeCategory(button) {
 
   categoryButtons.forEach(function (categoryButton) {
     categoryButton.classList.remove("category_selected");
     categoryButton.disabled = false;
   });
 
-  this.classList.add("category_selected");
-  this.disabled = true;
+  button.classList.add("category_selected");
+  button.disabled = true;
 
   renderProducts();
 
 };
-
-categoryButtons.forEach(function (categoryButton) {
-
-  categoryButton.addEventListener("click", changeCategory);
-
-});
 
 
 // Open product information modal window
@@ -151,8 +150,8 @@ function showProductInfo(selectedCard) {
 
                 <div class="product-details_left-wrapper">
 
-                    <div class="product_image">
-                        <img src="./img/products/${selectedProduct.category}/${selectedProduct.image}@2x.png" alt="Мясная бомба">
+                    <div data-href="./img/products/${selectedProduct.category}/${selectedProduct.image}@2x.png" class="product_image progressive replace">
+                        <img class="preview" src="./img/products/${selectedProduct.category}/${selectedProduct.image}@preview.jpg" alt="${selectedProduct.name}">
                     </div>
 
                 </div>
